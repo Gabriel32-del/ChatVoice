@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ChatVoice — Chat en tiempo real</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body>
+  <div id="app" class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 24 24"><!-- simple chat logo --><path d="M2 12a10 10 0 1010-10 10 10 0 00-10 10zm11-1h-4v2h4v3l4-4-4-4v3z" fill="currentColor"/></svg>
+        <h1>ChatVoice</h1>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-btn active" data-section="chat">
+          <!-- svg icon -->
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v10H6l-4 4z" fill="currentColor"/></svg>
+          <span>Chat</span>
+        </button>
+
+        <button class="nav-btn" data-section="settings">
+          <svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 100 8 4 4 0 000-8z" fill="currentColor"/></svg>
+          <span>Ajustes</span>
+        </button>
+
+        <button class="nav-btn" data-section="account">
+          <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 10-5-5 5 5 0 005 5zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z" fill="currentColor"/></svg>
+          <span>Cuenta</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="signOutBtn" class="text-btn">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="search">
+          <input id="searchInput" placeholder="Buscar mensajes..." />
+        </div>
+
+        <div class="user-area" id="userArea">
+          <button id="signInBtn" class="primary-btn">Iniciar con Google</button>
+          <div id="userProfile" class="profile hidden">
+            <img id="userPhoto" alt="avatar" />
+            <div>
+              <div id="userName"></div>
+              <a id="manageAccount" href="#" target="_blank">Administrar cuenta</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section id="chatSection" class="section active">
+        <div id="messages" class="messages"></div>
+
+        <form id="messageForm" class="composer">
+          <input id="messageInput" autocomplete="off" placeholder="Escribe un mensaje..." />
+          <button type="submit" id="sendBtn">Enviar</button>
+        </form>
+      </section>
+
+      <section id="settingsSection" class="section">
+        <h2>Ajustes</h2>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="themeToggle" />
+            Tema oscuro
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="privacyToggle" />
+            Ocultar nombre en el chat (privacidad)
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="notifToggle" />
+            Notificaciones de nuevos mensajes
+          </label>
+        </div>
+      </section>
+
+      <section id="accountSection" class="section">
+        <h2>Administración de cuenta</h2>
+        <p>Usas Google para autenticarte. Para administrar tu cuenta, ve a tu cuenta de Google.</p>
+        <a id="googleManage" class="primary-link" href="https://myaccount.google.com" target="_blank">Administrar cuenta Google</a>
+      </section>
+    </main>
+  </div>
+
+  <!-- Local JS files -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
